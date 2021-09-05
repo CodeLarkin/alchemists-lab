@@ -2,6 +2,10 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 import "./Alchs.sol";
 
 
+pragma solidity ^0.8.6;
+
+
+// SPDX-License-Identifier: MIT
 contract AlchemistsLab {
 
     constructor(address alchemistsContract) {
@@ -202,7 +206,7 @@ contract AlchemistsLab {
         }
     }
 
-    function tiers(uint256 tokenId) public view returns (AlchemistTiers memory) {
+    function tiers(uint256 tokenId) public pure returns (AlchemistTiers memory) {
         return AlchemistTiers(
             getTier(tokenId, "AFFI"),
             getTier(tokenId, "INT"),
@@ -227,19 +231,19 @@ contract AlchemistsLab {
         );
     }
 
-    function isLegendary(string memory tier) private view returns (bool) {
+    function isLegendary(string memory tier) private pure returns (bool) {
         return keccak256(abi.encodePacked((tier))) == keccak256(abi.encodePacked(("leg")));
     }
 
-    function isEpic(string memory tier) private view returns (bool) {
+    function isEpic(string memory tier) private pure returns (bool) {
         return keccak256(abi.encodePacked((tier))) == keccak256(abi.encodePacked(("epic")));
     }
 
-    function isRare(string memory tier) private view returns (bool) {
+    function isRare(string memory tier) private pure returns (bool) {
         return keccak256(abi.encodePacked((tier))) == keccak256(abi.encodePacked(("rare")));
     }
 
-    function affinityTier(uint256 tokenId) public view returns (string memory) {
+    function affinityTier(uint256 tokenId) public pure returns (string memory) {
         string memory tier = getTier(tokenId, "AFFI");
         return tier;
     }

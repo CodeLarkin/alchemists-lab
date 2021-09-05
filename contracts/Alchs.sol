@@ -2,6 +2,11 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
+
+pragma solidity ^0.8.6;
+
+
+// SPDX-License-Identifier: MIT
 abstract contract Alchs is ERC721Enumerable, ReentrancyGuard, Ownable {
 
     //mapping (string => string[6]) darknessToHexArray;
