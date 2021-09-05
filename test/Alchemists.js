@@ -92,6 +92,8 @@ describe("AlchemistsLab", function () {
         logging.debug(alchemist);
         let tiers = await alchemistsLab.tiers(tokenId);
         logging.debug(tiers);
+        let affinityTier = await alchemistsLab.affinityTier(tokenId);
+        logging.debug(affinityTier);
         let tierCounts = await alchemistsLab.tierCounts(tokenId);
         logging.debug(tierCounts);
         let sTierCounts = await alchemistsLab.statTierCounts(tokenId);

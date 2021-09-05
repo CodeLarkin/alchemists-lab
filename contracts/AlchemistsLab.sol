@@ -239,6 +239,10 @@ contract AlchemistsLab {
         return keccak256(abi.encodePacked((tier))) == keccak256(abi.encodePacked(("rare")));
     }
 
+    function affinityTier(uint256 tokenId) public view returns (string memory) {
+        string memory tier = getTier(tokenId, "AFFI");
+        return tier;
+    }
     function tierCounts(uint256 tokenId) public view returns (TierCounts memory) {
         uint8 legs  = 0;
         uint8 epics = 0;
@@ -259,7 +263,6 @@ contract AlchemistsLab {
         }
         return TierCounts(legs, epics, rares, bases);
     }
-
     function statTierCounts(uint256 tokenId) public view returns (TierCounts memory) {
         uint8 legs  = 0;
         uint8 epics = 0;
