@@ -86,6 +86,12 @@ describe("AlchemistsLab", function () {
                 expect(ownedAlchemists[i]).to.equal(tokenId)
             }
         }
-
+        
+        let alchemist1 = await alchemistsLab.fullSolidityAlchemist(1);
+        logging.debug(alchemist1);
+        let tiers = await alchemistsLab.tiers(1);
+        logging.debug(tiers);
+        let tierCounts = await alchemistsLab.tierCounts(1);
+        logging.debug(tierCounts);
     });
 });
