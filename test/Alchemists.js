@@ -86,12 +86,21 @@ describe("AlchemistsLab", function () {
                 expect(ownedAlchemists[i]).to.equal(tokenId)
             }
         }
-        
-        let alchemist1 = await alchemistsLab.fullSolidityAlchemist(1);
-        logging.debug(alchemist1);
-        let tiers = await alchemistsLab.tiers(1);
+
+        const tokenId = 19356;
+        let alchemist = await alchemistsLab.fullSolidityAlchemist(tokenId);
+        logging.debug(alchemist);
+        let tiers = await alchemistsLab.tiers(tokenId);
         logging.debug(tiers);
-        let tierCounts = await alchemistsLab.tierCounts(1);
+        let tierCounts = await alchemistsLab.tierCounts(tokenId);
         logging.debug(tierCounts);
+        let sTierCounts = await alchemistsLab.statTierCounts(tokenId);
+        logging.debug(sTierCounts);
+        let cTierCounts = await alchemistsLab.compTierCounts(tokenId);
+        logging.debug(cTierCounts);
+        let bTierCounts = await alchemistsLab.beautyTierCounts(tokenId);
+        logging.debug(bTierCounts);
+        let eTierCounts = await alchemistsLab.equipmentTierCounts(tokenId);
+        logging.debug(eTierCounts);
     });
 });

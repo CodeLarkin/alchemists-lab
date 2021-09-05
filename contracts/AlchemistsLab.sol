@@ -37,6 +37,38 @@ contract AlchemistsLab {
         "SKIND"
     ];
 
+    uint8 constant public numStats = 5;
+    string[numStats] private statKeys = [
+        "INT"   ,
+        "APT"   ,
+        "STR"   ,
+        "AGI"   ,
+        "SPD"
+    ];
+    uint8 constant public numComps = 3;
+    string[numComps] private compKeys = [
+        "CHEM" ,
+        "AALT" ,
+        "DRAG"
+    ];
+    uint8 constant public numBeauts = 4;
+    string[numBeauts] private beautyKeys = [
+        "HAIR"  ,
+        "EYES"  ,
+        "SKINT" ,
+        "SKIND"
+    ];
+    uint8 constant public numEquips = 7;
+    string[numEquips] private equipKeys = [
+        "LHAND" ,
+        "RHAND" ,
+        "LARM"  ,
+        "RARM"  ,
+        "LPOCK" ,
+        "RPOCK" ,
+        "WALLET"
+    ];
+
     struct Alchemist {
         uint256 tokenId;
         bool    owned;
@@ -215,6 +247,87 @@ contract AlchemistsLab {
 
         for (uint8 i = 0; i < numProperties; i++) {
             string memory tier = getTier(tokenId, propertyKeys[i]);
+            if (isLegendary(tier)) {
+                legs++;
+            } else if (isEpic(tier)) {
+                epics++;
+            } else if (isRare(tier)) {
+                rares++;
+            } else {
+                bases++;
+            }
+        }
+        return TierCounts(legs, epics, rares, bases);
+    }
+
+    function statTierCounts(uint256 tokenId) public view returns (TierCounts memory) {
+        uint8 legs  = 0;
+        uint8 epics = 0;
+        uint8 rares = 0;
+        uint8 bases = 0;
+
+        for (uint8 i = 0; i < numStats; i++) {
+            string memory tier = getTier(tokenId, statKeys[i]);
+            if (isLegendary(tier)) {
+                legs++;
+            } else if (isEpic(tier)) {
+                epics++;
+            } else if (isRare(tier)) {
+                rares++;
+            } else {
+                bases++;
+            }
+        }
+        return TierCounts(legs, epics, rares, bases);
+    }
+    function compTierCounts(uint256 tokenId) public view returns (TierCounts memory) {
+        uint8 legs  = 0;
+        uint8 epics = 0;
+        uint8 rares = 0;
+        uint8 bases = 0;
+
+        for (uint8 i = 0; i < numComps; i++) {
+            string memory tier = getTier(tokenId, compKeys[i]);
+            if (isLegendary(tier)) {
+                legs++;
+            } else if (isEpic(tier)) {
+                epics++;
+            } else if (isRare(tier)) {
+                rares++;
+            } else {
+                bases++;
+            }
+        }
+        return TierCounts(legs, epics, rares, bases);
+    }
+    function beautyTierCounts(uint256 tokenId) public view returns (TierCounts memory) {
+        uint8 legs  = 0;
+        uint8 epics = 0;
+        uint8 rares = 0;
+        uint8 bases = 0;
+
+        for (uint8 i = 0; i < numBeauts; i++) {
+            string memory tier = getTier(tokenId, beautyKeys[i]);
+            if (isLegendary(tier)) {
+                legs++;
+            } else if (isEpic(tier)) {
+                epics++;
+            } else if (isRare(tier)) {
+                rares++;
+            } else {
+                bases++;
+            }
+        }
+        return TierCounts(legs, epics, rares, bases);
+    }
+    function equipmentTierCounts(uint256 tokenId) public view returns (TierCounts memory) {
+        uint8 legs  = 0;
+        uint8 epics = 0;
+        uint8 rares = 0;
+        uint8 bases = 0;
+
+        for (uint8 i = 0; i < numEquips; i++) {
+            string memory tier = getTier(tokenId, equipKeys[i]);
             if (isLegendary(tier)) {
                 legs++;
             } else if (isEpic(tier)) {
